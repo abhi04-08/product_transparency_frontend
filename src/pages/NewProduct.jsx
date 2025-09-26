@@ -30,18 +30,18 @@ export default function NewProduct({ onDone }){
                 {step === 1 && (
                     <div className='space-y-3'>
                         <label className='block'>Product Name</label>
-                        <input className='w-full p-2 border rounded' value={form.name} onChange={e => update("name", e.target.value)} />
+                        <input type='text' className='w-full p-2 border rounded text-gray-600' value={form.name} onChange={e => update("name", e.target.value)} />
                         <label className='block'>Category</label>
-                        <input className='w-full p-2 border rounded' value={form.category} onChange={e => update("category", e.target.value)} />
+                        <input className='w-full p-2 border rounded text-gray-600' value={form.category} onChange={e => update("category", e.target.value)} />
                         <div className='flex justify-end gap-2 mt-4'>
-                            <button className='px-4 py-2' onClick={setStep(2)}>Next</button>
+                            <button className='px-4 py-2' onClick={() => setStep(2)}>Next</button>
                         </div>
                     </div>
                 )}
                 {step === 2 && (
                     <div className='space-y-3'>
                         <label>Ingredients(comma separated)</label>
-                        <input className='w-full p-2 border rounded' value={form.ingredients.join(", ")} onChange={e => update("ingredients", e.target.value.split(",").map(s=>s.trim()))} />
+                        <input className='w-full p-2 border rounded text-gray-600' value={form.ingredients.join(", ")} onChange={e => update("ingredients", e.target.value.split(",").map(s=>s.trim()))} />
                         <div className='flex justify-between mt-4'>
                             <button onClick={() => setStep(1)} className='px-4 py-2'>Back</button>
                             <button onClick={() => setStep(3)} className='px-4 py-2'>Next</button>
@@ -51,9 +51,9 @@ export default function NewProduct({ onDone }){
                 {step === 3 && (
                     <div className='space-y-3'>
                         <label>Certifications (comma separated)</label>
-                        <input className='w-full p-2 border rounded' value={form.certifications.join(", ")} onChange={e => update("certifications", e.target.value.split(",".map(s=>s.trim())))} />
+                        <input className='w-full p-2 border rounded text-gray-600' value={form.certifications.join(", ")} onChange={e => update("certifications", e.target.value.split(",").map(s=>s.trim()))} />
                         <div className='flex justify-between mt-4'>
-                            <button onClick={setStep(2)} className='px-4 py-2'>Back</button>
+                            <button onClick={() => setStep(2)} className='px-4 py-2'>Back</button>
                             <button onClick={handleSubmit} className='bg-indigo-600 text-white px-4 py-2 rounded' disabled={loading}>{loading ? "Submitting..." : "Submit"}</button>
                         </div>
                     </div>
@@ -64,7 +64,7 @@ export default function NewProduct({ onDone }){
                         <h3 className='text-lg font-semibold'>Mock AI Feedback</h3>
                         <div className='p-4 bg-gray-50 dark:bg-gray-900 rounded'>
                             <div><strong>Score:</strong> {result.ai?.score}%</div>
-                            <div className='mt-2'><strong>Explanation:</strong> {result.ai?.explanation}%</div>
+                            <div className='mt-2'><strong>Explanation:</strong> {result.ai?.explanation}</div>
                             <div className='mt-2'><strong>Suggestions:</strong>
                                 <ul className='list-disc ml-6'>
                                     {result.ai?.suggestions?.map((s,i) => <li key={i}>{s}</li>)}
